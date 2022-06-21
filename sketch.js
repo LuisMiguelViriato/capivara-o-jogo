@@ -2,7 +2,8 @@
 var cap, capimg;
 var solo, line;
 var estado = "inicio"
-var img, pr1, pr2, pr3, pr4,pr5, pr6,pr7, pr8
+var img, pr1, pr2, pr3, pr4,pr5, pr6,pr7, pr8;
+var bl1, bl2, gpblocos;
 
 function preload(){ // função que carregar todas as imagens e animações
   capimg = loadAnimation("assets/cp1.png", "assets/cp2.png","assets/cp3.png", "assets/cp4.png")
@@ -16,16 +17,20 @@ function preload(){ // função que carregar todas as imagens e animações
   pr6 = loadImage("assets/cs6.jpg");
   pr7 = loadImage("assets/cs7.jpg");
   pr8 = loadImage("assets/cs8.jpg");
+
+  bl1 = loadImage("assets/b1.png");
+  bl2 = loadImage("assets/b2.png");
+  
 }
 
 function setup(){ // todas as configuraçoes dos objetos
-  createCanvas(800,500);
-  solo = createSprite(420,420,900,200)
-  line=createSprite(400,385,800,5)
-  line.shapeColor="white"
-  
+  createCanvas(windowWidth,500);
+  solo = createSprite(420,480,width+1000,100)
   //CAP
-
+  cap = createSprite(50,244,20,20)
+  cap.addAnimation("capivara",capimg)
+  cap.debug=true
+  gpblocos = new Group()
 }
 
 function draw(){
@@ -58,7 +63,48 @@ function inicio(){
 }
 
 function jogar (){
-  criacasas()
+  //camera:
+  cap.velocityY += 0.8;
+  cap.collide(solo)
+  camera.position.y = cap.position.y-100;
+  camera.position.x = cap.position.x+400
+  solo.x = cap.x
+  
+  controle ();
+  blocos()
+  cap.collide(gpblocos)
+
+}
+
+function controle(){
+  if(keyIsDown(32)){
+    cap.velocityY =  -10
+  }
+  if(keyIsDown(LEFT_ARROW)){
+    cap.x-= 10
+  }
+  if(keyIsDown(RIGHT_ARROW)){
+    cap.x+= 10
+  }
+}
+
+function blocos(){
+  if(frameCount%40===0){
+    var bloco = createSprite(cap.x+1100, random(200,430),20,20);
+    bloco.lifetime = 1000
+    bloco.scale=0.2
+    var r = Math.round(random(1,2))
+    switch (r) {
+        case 1: bloco.addImage(bl1)
+        break;
+        case 2: bloco.addImage(bl2)
+        break;
+    }
+
+    gpblocos.add(bloco)
+    bloco.debug=true
+  }
+
 }
 
 function criacasas (){
