@@ -25,7 +25,8 @@ function setup(){ // todas as configuraçoes dos objetos
   line.shapeColor="white"
   
   //CAP
-
+cap = createSprite(50,462)
+cap.addAnimation("test",capimg)
 }
 
 function draw(){
@@ -66,26 +67,26 @@ function criacasas (){
     var casa = createSprite(800,300,20,20)
     casa.velocityX = -2
     
-    var r = Math.round(random(1,8))
-    switch (r) {
-      case 1: casa.addImage(pr1)
-        break;
-        case 2: casa.addImage(pr2)
-        break;
-        case 3: casa.addImage(pr3)
-        break;
-        case 4: casa.addImage(pr4)
-        break;
-        case 5: casa.addImage(pr5)
-        break;
-        case 6: casa.addImage(pr6)
-        break;
-        case 7: casa.addImage(pr7)
-        break;
-        case 8: casa.addImage(pr8)
-        break;
+    // var r = Math.round(random(1,8))
+    // switch (r) {
+    //   case 1: casa.addImage(pr1)
+    //     break;
+    //     case 2: casa.addImage(pr2)
+    //     break;
+    //     case 3: casa.addImage(pr3)
+    //     break;
+    //     case 4: casa.addImage(pr4)
+    //     break;
+    //     case 5: casa.addImage(pr5)
+    //     break;
+    //     case 6: casa.addImage(pr6)
+    //     break;
+    //     case 7: casa.addImage(pr7)
+    //     break;
+    //     case 8: casa.addImage(pr8)
+    //     break;
     
      
-    }
+    // }
   }
 }
