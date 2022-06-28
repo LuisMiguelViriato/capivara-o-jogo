@@ -1,14 +1,16 @@
-
+var fortinaituolabbji
 var cap, capimg;
 var solo, line;
 var estado = "inicio"
 var img, pr1, pr2, pr3, pr4,pr5, pr6,pr7, pr8;
 var bl1, bl2, gpblocos;
+var usparagaios;
 
 function preload(){ // função que carregar todas as imagens e animações
   capimg = loadAnimation("assets/cp1.png", "assets/cp2.png","assets/cp3.png", "assets/cp4.png")
   img = loadImage ("assets/cap1.png");
 
+  fortinaituolabbji =loadImage ("assets/pp3.png")
   pr1 = loadImage("assets/cs1.jpg");
   pr2 = loadImage("assets/cs2.jpg");
   pr3 = loadImage("assets/cs3.jpg");
@@ -31,7 +33,7 @@ function setup(){ // todas as configuraçoes dos objetos
   cap.addAnimation("capivara",capimg)
   cap.debug=true
   gpblocos = new Group()
-
+  usparagaios =new Group()
  
 }
 
@@ -76,6 +78,7 @@ function jogar (){
   blocos()
   cap.collide(gpblocos)
 
+  bandodefavelado()
 }
 
 function controle(){
@@ -89,6 +92,30 @@ function controle(){
     cap.x+= 10
   }
 }
+function bandodefavelado(){
+  if(frameCount%40===0){
+    var paragaio = createSprite(cap.x+1100, random(200,430),20,20);
+    paragaio.lifetime = 1000
+    paragaio.scale=0.2
+    var r = Math.round(random(1,2))
+    switch (r) {
+        case 1: paragaio.addImage(fortinaituolabbji)
+        break;
+        case 2: paragaio.addImage(fortinaituolabbji)
+        break;
+    }
+usparagaios.add(paragaio)
+    paragaio.debug=true
+  }
+
+
+
+
+
+}
+
+
+
 
 function blocos(){
   if(frameCount%40===0){
