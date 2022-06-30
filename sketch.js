@@ -83,7 +83,14 @@ function jogar(){
   cap.collide(gpblocos);
   bandodefavelado();
   picoles();
- 
+ cap.overlap(gppicole,function(collector,collected){
+collected.remove()
+score++
+ })
+ cap.overlap(usparagaios,function(collector,collected){
+  collected.remove()
+  rain()
+   })
   if(score>=2){
     rain()
   }
