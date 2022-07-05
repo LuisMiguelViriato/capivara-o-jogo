@@ -55,7 +55,7 @@ function draw(){
     jogar ();
     
   }else if (estado === "fim") {
-
+rain()
   }
   text (mouseX + "," + mouseY, mouseX, mouseY);
 }
@@ -82,17 +82,24 @@ function jogar(){
   camera.position.y = cap.position.y-100;
   camera.position.x = cap.position.x+400;
   solo.x = cap.x;
-  // music.play()
-  // music.setVolume(0.5)
+
   controle ();
   blocos();
   cap.collide(gpblocos);
   bandodefavelado();
   picoles();
+
+
  cap.overlap(gppicole,function(collector,collected){
 collected.remove()
 score++
  })
+ cap.overlap(gpsh,function(collector,collected){
+  if (!music.isPlaying()) {
+    music.play()
+    music.setVolume(0.5)}
+    estado = "fim"
+   })
  cap.overlap(usparagaios,function(collector,collected){
   collected.remove()
   rain()
