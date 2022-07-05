@@ -7,6 +7,7 @@ var bl1, bl2, gpblocos, gppicole, gpsh;
 var usparagaios;
 var p1,p2,p3,p4, shimg;
 var score=0;
+var music;
 
 function preload(){ // função que carregar todas as imagens e animações
   capimg = loadAnimation("assets/cp1.png", "assets/cp2.png","assets/cp3.png", "assets/cp4.png")
@@ -24,6 +25,8 @@ function preload(){ // função que carregar todas as imagens e animações
   p3=loadImage("assets/pic3.png");
   p4=loadImage("assets/pic4.png");
   shimg = loadImage("assets/sh.png");
+
+  music = loadSound("assets/somebody.mp3")
 }
 
 function setup(){ // todas as configuraçoes dos objetos
@@ -37,7 +40,9 @@ function setup(){ // todas as configuraçoes dos objetos
   gpblocos = new Group();
   usparagaios =new Group();
   gppicole =new Group();
-  gpsh = new Group()
+  gpsh = new Group();
+
+  
 }
 
 function draw(){
@@ -77,7 +82,8 @@ function jogar(){
   camera.position.y = cap.position.y-100;
   camera.position.x = cap.position.x+400;
   solo.x = cap.x;
-  
+  // music.play()
+  // music.setVolume(0.5)
   controle ();
   blocos();
   cap.collide(gpblocos);
